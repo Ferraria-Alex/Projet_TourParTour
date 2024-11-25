@@ -63,7 +63,24 @@ function updateHealthBars() {
  * @returns {void} Ne retourne aucune valeur.
  */
 function addLogMessage(who, action, value) {
-
+    if(action == "heal"){
+        logMessages.push(`${who} has healed himself by ${value} hp`);
+    }else if(action == "normalAttack"){
+        if(who == "player"){
+            logMessages.push(`${who} has attacked the monster and it lost ${value} hp`);
+        } else {
+            logMessages.push(`The monster has attacked you and you lost ${value} hp`);
+        }
+    }else if(action == "specialAttack"){
+        if(who == "player"){
+            logMessages.push(`${who} has used a special attack on monster and lost ${value} hp`);
+        } else {
+            logMessages.push(`The monster has attacked you and you lost ${value} hp`);
+        }
+    }
+    logMessages.forEach((log)=>{
+        logMessagesList.innerHTML = `<li>${log}</li>`;
+    });
 }
 
 /**
@@ -187,7 +204,7 @@ function specialAttackMonster() {
  * @returns {void} Ne retourne aucune valeur.
  */
 function healPlayer() {
-
+//X Sophie
 }
 
 /**
