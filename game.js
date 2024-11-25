@@ -137,18 +137,20 @@ function specialAttackMonster() {
 function healPlayer() {
     // Calcule une valeur de soin aléatoire et augmente la santé du joueur, sans dépasser 100.
     if (playerHealth != 100) {
-        Math.floor((Math.random() * 100 + 1) - playerHealth);
+        let healAmount = Math.floor((Math.random() * 100 + 1) - playerHealth);
         // Augmente le compteur de rounds.
-        currentRound += 1;
+        currentRound++;
+        // Ajoute un message de log pour l'action de soin.
+        addLogMessage("Player", "boit une potion de soin", healAmount);
+        // Déclenche une attaque du monstre en réponse.
+        attackMonster();
+        // Vérifie si un gagnant peut être déterminé.
+        checkWinner();
+        // Met à jour les barres de santé affichées.
+        updateHealthBars();
+    } else {
+        alert("Player a déjà tous ses points de vie");
     }
-    // Ajoute un message de log pour l'action de soin.
-    addLogMessage();
-    // Déclenche une attaque du monstre en réponse.
-    attackMonster();
-    // Vérifie si un gagnant peut être déterminé.
-    checkWinner();
-    // Met à jour les barres de santé affichées.
-    updateHealthBars();
 }
 
 /**
