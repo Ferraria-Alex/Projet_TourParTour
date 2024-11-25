@@ -29,7 +29,7 @@ let logMessages = [];
  */
 function updateHealthBars() {
     // Mise à jour de la barre de vie du joueur
-    playerHealthBar.style.width =` ${playerHealth}%;` // Utilisation de playerHealth
+    playerHealthBar.style.width =` ${playerHealth}%` // Utilisation de playerHealth
     if (playerHealth <= 15) {
       playerHealthBar.style.backgroundColor = "red;"; // Rouge si <= 15%
     } else if (playerHealth <= 30) {
@@ -117,7 +117,7 @@ function attackMonster() {
     //Incrémenter le nombre de rounds :
     currentRound++;
     // générer une valeur aléatoire pour l'attaque :
-    let powerAttack = Math.random()*10+1;
+    let powerAttack =  Math.floor(Math.random()*10+1);
     monsterHealth -=powerAttack;
     // Contre-attaque du monstre : 
     attackPlayer();
@@ -146,8 +146,9 @@ function attackPlayer() {
     //Incrémenter le nombre de rounds :
     currentRound++;
     // générer une valeur aléatoire pour l'attaque :
-    let powerAttack = Math.random()*10+1;
+    let powerAttack = Math.floor(Math.random()*10+1);
     playerHealth -=powerAttack;
+    console.log('vie restante =',playerHealth)
     // // Log :
     // addLogMessage(monsterHealth, attack, powerAttack);
     // Vérification : 
