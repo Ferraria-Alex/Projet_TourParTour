@@ -89,8 +89,10 @@ function resetGame() {
  * @returns {void} Ne retourne aucune valeur.
  */
 function attackMonster() {
-
+    let powerAttack = Math.random()*10
+    return Math.floor(powerAttack)
 }
+
 
 /**
  * Gère l'attaque du monstre contre le joueur.
@@ -103,7 +105,8 @@ function attackMonster() {
  * @returns {void} Ne retourne aucune valeur.
  */
 function attackPlayer() {
-
+    let powerAttack = Math.random()*10
+    return Math.floor(powerAttack)
 }
 
 /**
