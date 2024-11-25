@@ -9,6 +9,7 @@ const attackButton = document.getElementById('attack-button');
 const specialAttackButton = document.getElementById('special-attack-button');
 const healButton = document.getElementById('heal-button');
 const surrenderButton = document.getElementById('surrender-button');
+const controls = document.getElementById('controls');
 
 let playerHealth = 100;
 let monsterHealth = 100;
@@ -180,7 +181,12 @@ function healPlayer() {
  * @returns {void} Ne retourne aucune valeur.
  */
 function surrenderGame() {
-
+    alert("Player a abandonné la partie : Monster gagne !");
+    gameOverSection.style.display = "block";
+    let surrender = document.createElement("p");
+    surrender.innerText = "Player a lâchement abandonné. Monster gagne ! 💪";
+    gameOverSection.appendChild(surrender);
+    controls.style.display = "none";
 }
 
 // Special attack availability
