@@ -58,7 +58,25 @@ function addLogMessage(who, action, value) {
  * @returns {void} Ne retourne aucune valeur. Modifie l'interface utilisateur en fonction du résultat du jeu.
  */
 function checkWinner() {
-
+    if (playerHealth <= 0 && monsterHealth <= 0) {
+        alert("Match nul !! 😲");
+        gameOverSection.style.display = "block";
+        let matchNul = document.createElement("p");
+        matchNul.innerText = "Match nul: personne n'a gagné ! 😲";
+        gameOverSection.appendChild(matchNul);
+    } else if (playerHealth <= 0) {
+        alert("Player a perdu 😢");
+        gameOverSection.style.display = "block";
+        let playerLose = document.createElement("p");
+        playerLose.innerText = "Player a perdu 😢";
+        gameOverSection.appendChild(playerLose);
+    } else if (monsterHealth <=0) {
+        alert("Player a gagné ! 🎉");
+        gameOverSection.style.display = "block";
+        let playerWins = document.createElement("p");
+        playerWins.innerText = "Player a gagné ! 🎉";
+        gameOverSection.appendChild(playerWins);
+    }
 }
 
 /**
