@@ -135,7 +135,19 @@ function specialAttackMonster() {
  * @returns {void} Ne retourne aucune valeur.
  */
 function healPlayer() {
-
+    let round = 0;
+    // Calcule une valeur de soin aléatoire et augmente la santé du joueur, sans dépasser 100.
+    Math.floor(Math.random() * 101);
+    // Augmente le compteur de rounds.
+    round += 1;
+    // Ajoute un message de log pour l'action de soin.
+    addLogMessage();
+    // Déclenche une attaque du monstre en réponse.
+    attackMonster();
+    // Vérifie si un gagnant peut être déterminé.
+    checkWinner();
+    // Met à jour les barres de santé affichées.
+    updateHealthBars();
 }
 
 /**
