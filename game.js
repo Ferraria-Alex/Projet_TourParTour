@@ -160,7 +160,7 @@ function surrenderGame() {
  * @returns {void} Ne retourne aucune valeur.
  */
 function updateSpecialAttackButton() {
-
+    
 }
 
 // Event Listeners
