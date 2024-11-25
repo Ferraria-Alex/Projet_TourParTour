@@ -9,7 +9,6 @@ const attackButton = document.getElementById('attack-button');
 const specialAttackButton = document.getElementById('special-attack-button');
 const healButton = document.getElementById('heal-button');
 const surrenderButton = document.getElementById('surrender-button');
-
 let playerHealth = 100;
 let monsterHealth = 100;
 let currentRound = 0;
@@ -31,21 +30,21 @@ function updateHealthBars() {
     // Mise à jour de la barre de vie du joueur
     playerHealthBar.style.width =` ${playerHealth}%` // Utilisation de playerHealth
     if (playerHealth <= 15) {
-      playerHealthBar.style.backgroundColor = "red;"; // Rouge si <= 15%
+      playerHealthBar.style.backgroundColor = "red"; // Rouge si <= 15%
     } else if (playerHealth <= 30) {
-      playerHealthBar.style.backgroundColor = "orange;"; // Orange si <= 30%
+      playerHealthBar.style.backgroundColor = "orange"; // Orange si <= 30%
     } else {
-      playerHealthBar.style.backgroundColor = "green;"; // Vert sinon
+      playerHealthBar.style.backgroundColor = "green"; // Vert sinon
     }
   
     // Mise à jour de la barre de vie du monstre
     monsterHealthBar.style.width =` ${monsterHealth}%`; // Utilisation de monsterHealth
     if (monsterHealth <= 15) {
-      monsterHealthBar.style.backgroundColor = "red;"; // Rouge si <= 15%
+      monsterHealthBar.style.backgroundColor = "red"; // Rouge si <= 15%
     } else if (monsterHealth <= 30) {
-      monsterHealthBar.style.backgroundColor = "orange;" // Orange si <= 30%
+      monsterHealthBar.style.backgroundColor = "orange" // Orange si <= 30%
     } else {
-      monsterHealthBar.style.backgroundColor = "green;"; // Vert sinon
+      monsterHealthBar.style.backgroundColor = "green"; // Vert sinon
     }
   }
   
