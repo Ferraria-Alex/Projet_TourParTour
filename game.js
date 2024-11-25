@@ -147,11 +147,10 @@ function attackPlayer() {
     // générer une valeur aléatoire pour l'attaque :
     let powerAttack = Math.floor(Math.random()*10+1);
     playerHealth -=powerAttack;
-    console.log('vie restante =',playerHealth)
     // // Log :
     // addLogMessage(monsterHealth, attack, powerAttack);
     // Vérification : 
-    checkWinner();
+    //checkWinner();
     // MAJ barre desanté joueur :
     updateHealthBars();
 
@@ -170,7 +169,17 @@ function attackPlayer() {
  * @returns {void} Ne retourne aucune valeur.
  */
 function specialAttackMonster() {
-
+    // Incrémenter le nombre de rounds :
+    currentRound++;
+        // générer une valeur aléatoire pour l'attaque SPEZIAL !! :
+        let powerAttackSpecial = Math.floor((Math.random()*10+1)+Math.random()*10+1);
+        monsterHealth -=powerAttackSpecial;
+     // Log :
+    // addLogMessage(monsterHealth, attack, powerAttack);
+    // Vérification : 
+    //checkWinner();
+    // MAJ barre desanté joueur :
+    updateHealthBars();
 }
 
 /**
@@ -211,9 +220,14 @@ function surrenderGame() {
  * @returns {void} Ne retourne aucune valeur.
  */
 function updateSpecialAttackButton() {
-
+    if(currentRound >1 && currentRound%3 ==0 ){
+        specialAttackButton.removeAttribute('disabled');
+        console.log('modulo 3',currentRound)
+    }else if(currentRound %3 !=0){
+        specialAttackButton.setAttribute('disabled')
+    }
 }
-
+updateSpecialAttackButton()
 // Event Listeners
 attackButton.addEventListener('click', attackMonster);
 specialAttackButton.addEventListener('click', specialAttackMonster);
