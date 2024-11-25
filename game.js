@@ -15,6 +15,8 @@ let monsterHealth = 100;
 let currentRound = 0;
 let logMessages = [];
 
+
+
 // Utility functions
 /**
  * Met à jour les barres de santé du joueur et du monstre.
@@ -26,8 +28,28 @@ let logMessages = [];
  * @returns {void} Ne retourne aucune valeur.
  */
 function updateHealthBars() {
-
-}
+    // Mise à jour de la barre de vie du joueur
+    playerHealthBar.style.width =` ${playerHealth}%;` // Utilisation de playerHealth
+    if (playerHealth <= 15) {
+      playerHealthBar.style.backgroundColor = "red;"; // Rouge si <= 15%
+    } else if (playerHealth <= 30) {
+      playerHealthBar.style.backgroundColor = "orange;"; // Orange si <= 30%
+    } else {
+      playerHealthBar.style.backgroundColor = "green;"; // Vert sinon
+    }
+  
+    // Mise à jour de la barre de vie du monstre
+    monsterHealthBar.style.width =` ${monsterHealth}%`; // Utilisation de monsterHealth
+    if (monsterHealth <= 15) {
+      monsterHealthBar.style.backgroundColor = "red;"; // Rouge si <= 15%
+    } else if (monsterHealth <= 30) {
+      monsterHealthBar.style.backgroundColor = "orange;" // Orange si <= 30%
+    } else {
+      monsterHealthBar.style.backgroundColor = "green;"; // Vert sinon
+    }
+  }
+  
+  updateHealthBars();
 
 /**
  * Ajoute un message de log à l'historique de la bataille.
@@ -75,6 +97,7 @@ function resetGame() {
 
 }
 
+
 // Actions
 /**
  * Gère l'attaque du joueur contre le monstre.
@@ -89,8 +112,21 @@ function resetGame() {
  * @returns {void} Ne retourne aucune valeur.
  */
 function attackMonster() {
-    let powerAttack = Math.random()*10
-    return Math.floor(powerAttack)
+    // TEST /
+    console.log('attackMonster() activé')
+    //Incrémenter le nombre de rounds :
+    currentRound++;
+    // générer une valeur aléatoire pour l'attaque :
+    let powerAttack = Math.random()*10+1;
+    monsterHealth -=powerAttack;
+    // Contre-attaque du monstre : 
+    attackPlayer();
+    // // Vérification :
+    // checkWinner();
+    // // Log :
+    // addLogMessage(playerHealth, attack, powerAttack) 
+    // MAJ barre de santé joueur :
+    updateHealthBars();
 }
 
 
@@ -105,8 +141,20 @@ function attackMonster() {
  * @returns {void} Ne retourne aucune valeur.
  */
 function attackPlayer() {
-    let powerAttack = Math.random()*10
-    return Math.floor(powerAttack)
+    // TEST /
+    console.log('attackPlayer() activé')
+    //Incrémenter le nombre de rounds :
+    currentRound++;
+    // générer une valeur aléatoire pour l'attaque :
+    let powerAttack = Math.random()*10+1;
+    playerHealth -=powerAttack;
+    // // Log :
+    // addLogMessage(monsterHealth, attack, powerAttack);
+    // Vérification : 
+    checkWinner();
+    // MAJ barre desanté joueur :
+    updateHealthBars();
+
 }
 
 /**
