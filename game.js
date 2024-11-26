@@ -9,6 +9,8 @@ const attackButton = document.getElementById('attack-button');
 const specialAttackButton = document.getElementById('special-attack-button');
 const healButton = document.getElementById('heal-button');
 const surrenderButton = document.getElementById('surrender-button');
+const controls = document.getElementById('controls');
+
 let playerHealth = 100;
 let monsterHealth = 100;
 let currentRound = 0;
@@ -62,7 +64,24 @@ function updateHealthBars() {
  * @returns {void} Ne retourne aucune valeur.
  */
 function addLogMessage(who, action, value) {
-
+    if(action == "heal"){
+        logMessages.push(`${who} has healed himself by ${value} hp`);
+    }else if(action == "normalAttack"){
+        if(who == "player"){
+            logMessages.push(`${who} has attacked the monster and it lost ${value} hp`);
+        } else {
+            logMessages.push(`The monster has attacked you and you lost ${value} hp`);
+        }
+    }else if(action == "specialAttack"){
+        if(who == "player"){
+            logMessages.push(`${who} has used a special attack on monster and lost ${value} hp`);
+        } else {
+            logMessages.push(`The monster has attacked you and you lost ${value} hp`);
+        }
+    }
+    logMessages.forEach((log)=>{
+        logMessagesList.innerHTML = `<li>${log}</li>`;
+    });
 }
 
 /**
@@ -79,7 +98,25 @@ function addLogMessage(who, action, value) {
  * @returns {void} Ne retourne aucune valeur. Modifie l'interface utilisateur en fonction du résultat du jeu.
  */
 function checkWinner() {
-
+    if (playerHealth <= 0 && monsterHealth <= 0) {
+        alert("Match nul !! 😲");
+        gameOverSection.style.display = "block";
+        let matchNul = document.createElement("p");
+        matchNul.innerText = "Match nul: personne n'a gagné ! 😲";
+        gameOverSection.appendChild(matchNul);
+    } else if (playerHealth <= 0) {
+        alert("Player a perdu 😢");
+        gameOverSection.style.display = "block";
+        let playerLose = document.createElement("p");
+        playerLose.innerText = "Player a perdu 😢";
+        gameOverSection.appendChild(playerLose);
+    } else if (monsterHealth <=0) {
+        alert("Player a gagné ! 🎉");
+        gameOverSection.style.display = "block";
+        let playerWins = document.createElement("p");
+        playerWins.innerText = "Player a gagné ! 🎉";
+        gameOverSection.appendChild(playerWins);
+    }
 }
 
 /**
@@ -195,7 +232,22 @@ function specialAttackMonster() {
  * @returns {void} Ne retourne aucune valeur.
  */
 function healPlayer() {
-
+    // Calcule une valeur de soin aléatoire et augmente la santé du joueur, sans dépasser 100.
+    if (playerHealth != 100) {
+        let healAmount = Math.floor((Math.random() * 100 + 1) - playerHealth);
+        // Augmente le compteur de rounds.
+        currentRound++;
+        // Ajoute un message de log pour l'action de soin.
+        addLogMessage("Player", "boit une potion de soin", healAmount);
+        // Déclenche une attaque du monstre en réponse.
+        attackMonster();
+        // Vérifie si un gagnant peut être déterminé.
+        checkWinner();
+        // Met à jour les barres de santé affichées.
+        updateHealthBars();
+    } else {
+        alert("Player a déjà tous ses points de vie");
+    }
 }
 
 /**
@@ -207,7 +259,12 @@ function healPlayer() {
  * @returns {void} Ne retourne aucune valeur.
  */
 function surrenderGame() {
-
+    alert("Player a abandonné la partie : Monster gagne !");
+    gameOverSection.style.display = "block";
+    let surrender = document.createElement("p");
+    surrender.innerText = "Player a lâchement abandonné. Monster gagne ! 💪";
+    gameOverSection.appendChild(surrender);
+    controls.style.display = "none";
 }
 
 // Special attack availability
